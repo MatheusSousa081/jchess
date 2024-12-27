@@ -1,4 +1,6 @@
 package codes.matheus;
 
-public class Color {
+public enum Color {
+    WHITE,
+    BLACK
 }

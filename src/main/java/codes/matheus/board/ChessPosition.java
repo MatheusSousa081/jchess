@@ -1,13 +1,11 @@
-package codes.matheus.game;
+package codes.matheus.board;
 
-import codes.matheus.board.Position;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Range;
 
 public class ChessPosition {
     public static @NotNull ChessPosition from(@NotNull Position position) {
         return new ChessPosition((char) ('a' + position.getColumn()), 8 - position.getRow());
-
     }
 
     private char column;
@@ -25,6 +23,11 @@ public class ChessPosition {
 
     public int getRow() {
         return row;
+    }
+
+    public void move(char column, int row) {
+        this.column = column;
+        this.row = row;
     }
 
     public @NotNull Position toPosition() {
