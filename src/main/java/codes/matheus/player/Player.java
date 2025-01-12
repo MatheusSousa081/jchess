@@ -35,7 +35,7 @@ public final class Player {
         return moves;
     }
 
-    public void addMove(@NotNull Move move) {
-        moves.add(move);
-    }
+//    public void addMove(@NotNull Move move) {
+//        moves.add(move);
+//    }
 }

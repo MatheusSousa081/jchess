@@ -1,21 +1,26 @@
 package codes.matheus.pieces;
 
 import codes.matheus.Color;
-import codes.matheus.board.Board;
 import codes.matheus.board.Position;
+import codes.matheus.engine.core.Dimension;
+import codes.matheus.engine.core.Vector2D;
+import codes.matheus.engine.graphics.Element;
+import codes.matheus.engine.graphics.Sprite;
+import codes.matheus.engine.tilemap.TileMap;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Piece {
-    protected @Nullable Position position;
-    private final @NotNull Board board;
+    private final @NotNull TileMap tileMap;
     private final @NotNull Color color;
+    private @NotNull Sprite sprite;
+    private @Nullable Position position;
     private int moveCount;
 
-    public Piece(@NotNull Board board, @NotNull Color color) {
-        this.board = board;
+    public Piece(@NotNull Color color, @NotNull TileMap tileMap) {
         this.color = color;
-        this.moveCount = 0;
+        this.tileMap = tileMap;
+        moveCount = 0;
     }
 
     public @Nullable Position getPosition() {
@@ -26,31 +31,31 @@ public abstract class Piece {
         this.position = position;
     }
 
-    public @NotNull Board getBoard() {
-        return board;
-    }
-
     public @NotNull Color getColor() {
         return color;
     }
 
-    public int getMoveCount() {
-        return moveCount;
-    }
-
     public void increaseMoveCount() {
-        moveCount++;
+        this.moveCount++;
     }
 
     public void decreaseMoveCount() {
-        moveCount--;
+        this.moveCount--;
+    }
+
+    public @NotNull Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(@NotNull Sprite sprite) {
+        this.sprite = sprite;
     }
 
     public abstract boolean[][] possibleMoves();
 
-    public boolean hasPossibleMove() {
+    public boolean hasPossibleMoves() {
         for (int i = 0; i < possibleMoves().length; i++) {
-            for (int j = 0; j < possibleMoves()[0].length; j++) {
+            for (int j = 0; j < possibleMoves().length; j++) {
                 if (possibleMoves()[i][j]) {
                     return true;
                 }
@@ -59,10 +64,13 @@ public abstract class Piece {
         return false;
     }
 
-    public boolean isThereOpponentPiece(@NotNull Position position) {
-        @Nullable Piece piece = board.getPiece(position);
-        return piece != null && piece.getColor() != getColor();
+    public boolean isThereOpponentPiece(@NotNull Position target) {
+        @Nullable Piece piece = tileMap.getTile(target).getPiece();
+        return piece != null && piece.getColor() != color;
     }
 
-
+    @Override
+    public String toString() {
+        return this.getClass().getName() + " " + color;
+    }
 }

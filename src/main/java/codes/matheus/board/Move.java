@@ -4,42 +4,25 @@ import codes.matheus.pieces.Piece;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.util.Objects;
 
 public final class Move {
-    public static @NotNull ChessPosition readChessPosition() {
-        @NotNull String position = read();
-        char column = position.charAt(0);
-        int row = Integer.parseInt(position.substring(1));
-        return new ChessPosition(column, row);
-    }
-
-    private static @NotNull String read() {
-        @NotNull BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            return reader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private final @NotNull ChessPosition origin;
-    private final @NotNull ChessPosition target;
+    private final @NotNull Position origin;
+    private final @NotNull Position target;
     private final @NotNull Piece piece;
     private @Nullable Piece capturedPiece;
 
-    public Move(@NotNull ChessPosition origin, @NotNull ChessPosition target, @NotNull Piece piece) {
+    public Move(@NotNull Position origin, @NotNull Position target, @NotNull Piece piece) {
         this.origin = origin;
         this.target = target;
         this.piece = piece;
-        this.capturedPiece = null;
     }
 
-    public @NotNull ChessPosition getOrigin() {
+    public @NotNull Position getOrigin() {
         return origin;
     }
 
-    public @NotNull ChessPosition getTarget() {
+    public @NotNull Position getTarget() {
         return target;
     }
 
@@ -55,11 +38,28 @@ public final class Move {
         this.capturedPiece = capturedPiece;
     }
 
+    public void move() {
+    }
+
     @Override
     public String toString() {
         return "Move{" +
                 "origin=" + origin +
                 ", target=" + target +
+                ", piece=" + piece +
+                ", capturedPiece=" + capturedPiece +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        Move move = (Move) object;
+        return Objects.equals(origin, move.origin) && Objects.equals(target, move.target) && Objects.equals(piece, move.piece) && Objects.equals(capturedPiece, move.capturedPiece);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(origin, target, piece, capturedPiece);
     }
 }

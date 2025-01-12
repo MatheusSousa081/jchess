@@ -1,43 +1,20 @@
 package codes.matheus.pieces;
 
 import codes.matheus.Color;
-import codes.matheus.board.Board;
-import codes.matheus.board.Position;
+import codes.matheus.engine.graphics.Sprite;
+import codes.matheus.engine.tilemap.TileMap;
 import org.jetbrains.annotations.NotNull;
 
-public final class Knight extends Piece {
-    public Knight(@NotNull Board board, @NotNull Color color) {
-        super(board, color);
-    }
+import java.io.File;
 
-    private void checkDirection(boolean[][] moves, @NotNull Position currentPosition, int rowIncrement, int columnIncrement) {
-        @NotNull Position newPosition = new Position(currentPosition.getRow() + rowIncrement, currentPosition.getColumn() + columnIncrement);
-        if (getBoard().positionExists(newPosition) && (!getBoard().thereIsAPiece(newPosition) || isThereOpponentPiece(newPosition))) {
-            moves[newPosition.getRow()][newPosition.getColumn()] = true;
-        }
+public final class Knight extends Piece {
+    public Knight(@NotNull Color color, @NotNull TileMap tileMap) {
+        super(color, tileMap);
+        setSprite(new Sprite((color.equals(Color.WHITE)) ? new File("src/main/resources/pieces/knight-white.png") : new File("src/main/resources/pieces/knight-black.png") ));
     }
 
     @Override
     public boolean[][] possibleMoves() {
-        boolean[][] moves = new boolean[8][8];
-        if (getPosition() != null) {
-            @NotNull Position currentPosition = getPosition();
-
-            checkDirection(moves, currentPosition, 2, 1);
-            checkDirection(moves, currentPosition, 2, -1);
-            checkDirection(moves, currentPosition, -2, 1);
-            checkDirection(moves, currentPosition, -2, -1);
-            checkDirection(moves, currentPosition, 1, 2);
-            checkDirection(moves, currentPosition, -1, 2);
-            checkDirection(moves, currentPosition, 1, -2);
-            checkDirection(moves, currentPosition, -1, -2);
-        }
-
-        return moves;
-    }
-
-    @Override
-    public String toString() {
-        return "N";
+        return new boolean[0][];
     }
 }
