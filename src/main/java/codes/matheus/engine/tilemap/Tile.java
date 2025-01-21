@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public final class Tile extends Element {
     private final long id;
-    private final @NotNull Sprite background;
+    private @NotNull Sprite background;
     private @Nullable Piece piece;
 
     public Tile(@NotNull Vector2D vector2D, @NotNull Dimension dimension, @NotNull Sprite background, @Nullable Piece piece) {
@@ -30,6 +30,10 @@ public final class Tile extends Element {
 
     public @NotNull Sprite getBackground() {
         return background;
+    }
+
+    public void setBackground(@NotNull Sprite background) {
+        this.background = background;
     }
 
     public @Nullable Piece getPiece() {

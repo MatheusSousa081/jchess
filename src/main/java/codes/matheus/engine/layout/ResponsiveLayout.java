@@ -44,31 +44,20 @@ public final class ResponsiveLayout implements Layout {
         return mapLocationReference.get(element);
     }
 
-    @Override
-    public void setDimensionReference(@NotNull Element element, @NotNull Dimension dimension) {
-        mapDimensionReference.replace(element, dimension);
-    }
-
-    @Override
-    public void setVector2DReference(@NotNull Element element, @NotNull Vector2D vector2D) {
-        this.windowsMovementReference = new Dimension(responsivePanel.getWidth(), responsivePanel.getHeight());
-        mapLocationReference.replace(element, vector2D);
-    }
-
     private int calculateX(@NotNull Vector2D vector2D) {
-        return (vector2D.getX() * Window.getInitialDimension().getWidth()) / windowsMovementReference.getWidth();
+        return (vector2D.getX() * Window.getInitialDimension().getWidth() / windowsMovementReference.getWidth());
     }
 
     private int calculateY(@NotNull Vector2D vector2D) {
-        return (vector2D.getY() * Window.getInitialDimension().getHeight()) / windowsMovementReference.getHeight();
+        return (vector2D.getY() * Window.getInitialDimension().getHeight() / windowsMovementReference.getHeight());
     }
 
     private int calculateWidth(@NotNull Dimension dimension) {
-        return (dimension.getWidth() * Window.getInitialDimension().getWidth()) / windowsReference.getWidth();
+        return (dimension.getWidth() * Window.getInitialDimension().getWidth() / windowsReference.getWidth());
     }
 
     private int calculateHeight(@NotNull Dimension dimension) {
-        return (dimension.getHeight() * Window.getInitialDimension().getHeight()) / windowsReference.getHeight();
+        return (dimension.getHeight() * Window.getInitialDimension().getHeight() / windowsReference.getHeight());
     }
 
     public void resizeComponents(@NotNull List<@NotNull Element> elements) {

@@ -7,24 +7,24 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 
 public class Window extends JFrame {
-    public static @Nullable Window Instance;
+    public static @Nullable Window instance;
 
     public static @NotNull Window getInstance(@NotNull String title, @NotNull Dimension dimension) {
-        if (Instance == null) {
-            Instance = new Window(title, dimension);
+        if (instance == null) {
+            instance = new Window(title, dimension);
         }
-        return Instance;
+        return instance;
     }
 
     public static @NotNull Window getInstance(@NotNull String title) {
-        if (Instance == null) {
-            Instance = new Window(title);
+        if (instance == null) {
+            instance = new Window(title);
         }
-        return Instance;
+        return instance;
     }
 
     public static @NotNull Dimension getInitialDimension() {
-        return new Dimension(Instance.getWidth(), Instance.getHeight());
+        return new Dimension(instance.getWidth(), instance.getHeight());
     }
 
     private Window(@NotNull String title) {

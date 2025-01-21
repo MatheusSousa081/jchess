@@ -49,6 +49,10 @@ public class Pieces implements Iterable<@NotNull Piece> {
         return pieces.stream().anyMatch(piece -> position.equals(piece.getPosition()));
     }
 
+    public int size() {
+        return pieces.size();
+    }
+
     @Override
     public @NotNull Iterator<Piece> iterator() {
         return stream().iterator();

@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 public final class Username implements CharSequence {
     public static boolean isValid(@NotNull String value) {
-        if (value.length() <= 3 || value.length() > 20) {
+        if (value.length() < 3 || value.length() > 20) {
             return false;
         } if (value.isBlank()) {
             return false;

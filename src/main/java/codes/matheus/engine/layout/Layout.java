@@ -8,9 +8,5 @@ import org.jetbrains.annotations.NotNull;
 public interface Layout {
     @NotNull Dimension getDimensionReference(@NotNull Element element);
 
-    void setDimensionReference(@NotNull Element element, @NotNull Dimension dimension);
-
     @NotNull Vector2D getVector2DReference(@NotNull Element element);
-
-    void setVector2DReference(@NotNull Element element, @NotNull Vector2D vector2D);
 }

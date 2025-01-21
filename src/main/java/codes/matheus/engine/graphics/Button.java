@@ -9,16 +9,22 @@ import java.awt.*;
 import java.util.function.Consumer;
 
 public class Button extends Element {
+    private final @NotNull String description;
     private @Nullable String text;
     private @Nullable Sprite sprite;
     private @NotNull Consumer<@NotNull Button> event;
     private final @NotNull Color color;
 
-    public Button(@NotNull Vector2D vector2D, @NotNull Dimension dimension, @Nullable String text, @Nullable Sprite sprite, @NotNull Color color) {
+    public Button(@NotNull Vector2D vector2D, @NotNull Dimension dimension, @NotNull String description, @Nullable String text, @Nullable Sprite sprite, @NotNull Color color) {
         super(vector2D, dimension);
+        this.description = description;
         this.text = text;
         this.sprite = sprite;
         this.color = color;
+    }
+
+    public @NotNull String getDescription() {
+        return description;
     }
 
     public void setText(@Nullable String text) {

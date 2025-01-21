@@ -21,21 +21,26 @@ public final class Position {
         this.row = 8 - row;
     }
 
+    public int getRowMatrix() {
+        return 8 - row;
+    }
+
+    public int getColumnMatrix() {
+        return column - 'a';
+    }
 
     public void move(char column, @Range(from = 1, to = 8) int row) {
         this.column = column;
         this.row = row;
     }
 
-    public @NotNull Vector2D toVector2D(int tileSize) {
-        return new Vector2D((column - 'a') * tileSize, (8 - row) * tileSize);
+    public void move(@NotNull Position position) {
+        this.column = position.column;
+        this.row = position.row;
     }
 
-    public int[] toMatrix() {
-        return new int[] {
-                8 - row,
-                column - 'a'
-        };
+    public @NotNull Vector2D toVector2D(int tileSize) {
+        return new Vector2D((column - 'a') * tileSize, (8 - row) * tileSize);
     }
 
     @Override

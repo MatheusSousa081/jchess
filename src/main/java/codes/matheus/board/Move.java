@@ -9,8 +9,9 @@ import java.util.Objects;
 public final class Move {
     private final @NotNull Position origin;
     private final @NotNull Position target;
-    private final @NotNull Piece piece;
+    private @NotNull Piece piece;
     private @Nullable Piece capturedPiece;
+    private @Nullable Piece promotedPiece;
 
     public Move(@NotNull Position origin, @NotNull Position target, @NotNull Piece piece) {
         this.origin = origin;
@@ -38,7 +39,12 @@ public final class Move {
         this.capturedPiece = capturedPiece;
     }
 
-    public void move() {
+    public @Nullable Piece getPromotedPiece() {
+        return promotedPiece;
+    }
+
+    public void promote(@NotNull Piece promotedPiece) {
+        this.promotedPiece = promotedPiece;
     }
 
     @Override
@@ -48,18 +54,19 @@ public final class Move {
                 ", target=" + target +
                 ", piece=" + piece +
                 ", capturedPiece=" + capturedPiece +
+                ", promotedPiece=" + promotedPiece +
                 '}';
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (object == null || getClass() != object.getClass()) return false;
-        Move move = (Move) object;
-        return Objects.equals(origin, move.origin) && Objects.equals(target, move.target) && Objects.equals(piece, move.piece) && Objects.equals(capturedPiece, move.capturedPiece);
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Move move = (Move) o;
+        return Objects.equals(origin, move.origin) && Objects.equals(target, move.target) && Objects.equals(piece, move.piece) && Objects.equals(capturedPiece, move.capturedPiece) && Objects.equals(promotedPiece, move.promotedPiece);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(origin, target, piece, capturedPiece);
+        return Objects.hash(origin, target, piece, capturedPiece, promotedPiece);
     }
 }
