@@ -2,16 +2,14 @@ package codes.matheus.pieces;
 
 import codes.matheus.Color;
 import codes.matheus.board.Position;
-import codes.matheus.engine.graphics.Sprite;
 import codes.matheus.engine.tilemap.TileMap;
+import codes.matheus.util.ResourceManager;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
 
 public final class Knight extends Piece {
     public Knight(@NotNull Color color, @NotNull TileMap tileMap, @NotNull Pieces pieces) {
         super(color, tileMap, pieces);
-        setSprite(new Sprite((color.equals(Color.WHITE)) ? new File("src/main/resources/pieces/knight-white.png") : new File("src/main/resources/pieces/knight-black.png") ));
+        setSprite(color.equals(Color.WHITE) ? ResourceManager.getSprite("knight-white") : ResourceManager.getSprite("knight-black"));
     }
 
     public void checkDirection(boolean[][] moves, @NotNull Position currentPosition, int rowIncrement, int columnIncrement) {

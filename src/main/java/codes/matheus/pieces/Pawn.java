@@ -2,16 +2,14 @@ package codes.matheus.pieces;
 
 import codes.matheus.Color;
 import codes.matheus.board.Position;
-import codes.matheus.engine.graphics.Sprite;
 import codes.matheus.engine.tilemap.TileMap;
+import codes.matheus.util.ResourceManager;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
 
 public final class Pawn extends Piece {
     public Pawn(@NotNull Color color, @NotNull TileMap tileMap, @NotNull Pieces pieces) {
         super(color, tileMap, pieces);
-        setSprite(new Sprite((color.equals(Color.WHITE)) ? new File("src/main/resources/pieces/pawn-white.png") : new File("src/main/resources/pieces/pawn-black.png") ));
+        setSprite(color.equals(Color.WHITE) ? ResourceManager.getSprite("pawn-white") : ResourceManager.getSprite("pawn-black"));
     }
 
     @Override

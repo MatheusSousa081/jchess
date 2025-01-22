@@ -26,6 +26,7 @@ public final class Promotion {
         };
 
         if (promotedPiece != null) {
+            move.promote(promotedPiece);
             pieces.removePiece(tileMap, move.getTarget());
             pieces.put(tileMap, promotedPiece, move.getTarget());
         }

@@ -7,6 +7,7 @@ import codes.matheus.engine.graphics.Elements;
 import codes.matheus.engine.graphics.Sprite;
 import codes.matheus.engine.tilemap.Tile;
 import codes.matheus.engine.tilemap.TileMap;
+import codes.matheus.game.Game;
 import codes.matheus.pieces.*;
 import codes.matheus.player.Player;
 import codes.matheus.player.Username;
@@ -15,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 
 public final class GamePanel extends ResponsivePanel {
     private final @NotNull MouseInput mouseInput = new MouseInput();
@@ -82,7 +82,7 @@ public final class GamePanel extends ResponsivePanel {
         public UI() {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    @NotNull Sprite sprite = ((i + j) % 2 == 0) ? new Sprite(new File("src/main/resources/background/brown-dark.png")) : new Sprite(new File("src/main/resources/background/brown-light.png"));
+                    @NotNull Sprite sprite = ((i + j) % 2 == 0) ? Game.getTheme().getDark() : Game.getTheme().getLight();
                     @NotNull Position position = new Position(i, j);
                     @NotNull Tile tile = new Tile(position.toVector2D(64), new Dimension(64, 64), sprite, null);
                     tileMap.setTile(position, tile);
@@ -92,35 +92,35 @@ public final class GamePanel extends ResponsivePanel {
         }
 
         private void putPieces() {
-//            pieces.put(tileMap, new Rook(codes.matheus.Color.WHITE, tileMap, pieces), new Position('a', 1));
-//            pieces.put(tileMap, new Knight(codes.matheus.Color.WHITE, tileMap, pieces), new Position('b', 1));
-//            pieces.put(tileMap, new Bishop(codes.matheus.Color.WHITE, tileMap, pieces), new Position('c', 1));
-//            pieces.put(tileMap, new Queen(codes.matheus.Color.WHITE, tileMap, pieces), new Position('d', 1));
+            pieces.put(tileMap, new Rook(codes.matheus.Color.WHITE, tileMap, pieces), new Position('a', 1));
+            pieces.put(tileMap, new Knight(codes.matheus.Color.WHITE, tileMap, pieces), new Position('b', 1));
+            pieces.put(tileMap, new Bishop(codes.matheus.Color.WHITE, tileMap, pieces), new Position('c', 1));
+            pieces.put(tileMap, new Queen(codes.matheus.Color.WHITE, tileMap, pieces), new Position('d', 1));
             pieces.put(tileMap, new King(codes.matheus.Color.WHITE, tileMap, pieces), new Position('e', 1));
             pieces.put(tileMap, new Bishop(codes.matheus.Color.WHITE, tileMap, pieces), new Position('f', 1));
             pieces.put(tileMap, new Knight(codes.matheus.Color.WHITE, tileMap, pieces), new Position('g', 1));
-//            pieces.put(tileMap, new Rook(codes.matheus.Color.WHITE, tileMap, pieces), new Position('h', 1));
-//            pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('a', 2));
+            pieces.put(tileMap, new Rook(codes.matheus.Color.WHITE, tileMap, pieces), new Position('h', 1));
+            pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('a', 2));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('b', 2));
-//            pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('c', 2));
-//            pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('d', 2));
+            pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('c', 2));
+            pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('d', 2));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('e', 2));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('f', 2));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('g', 2));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.WHITE, tileMap, pieces), new Position('h', 2));
 
-//            pieces.put(tileMap, new Rook(codes.matheus.Color.BLACK, tileMap, pieces), new Position('a', 8));
-//            pieces.put(tileMap, new Knight(codes.matheus.Color.BLACK, tileMap, pieces), new Position('b', 8));
-//            pieces.put(tileMap, new Bishop(codes.matheus.Color.BLACK, tileMap, pieces), new Position('c', 8));
-//            pieces.put(tileMap, new Queen(codes.matheus.Color.BLACK, tileMap, pieces), new Position('d', 8));
+            pieces.put(tileMap, new Rook(codes.matheus.Color.BLACK, tileMap, pieces), new Position('a', 8));
+            pieces.put(tileMap, new Knight(codes.matheus.Color.BLACK, tileMap, pieces), new Position('b', 8));
+            pieces.put(tileMap, new Bishop(codes.matheus.Color.BLACK, tileMap, pieces), new Position('c', 8));
+            pieces.put(tileMap, new Queen(codes.matheus.Color.BLACK, tileMap, pieces), new Position('d', 8));
             pieces.put(tileMap, new King(codes.matheus.Color.BLACK, tileMap, pieces), new Position('e', 8));
-//            pieces.put(tileMap, new Bishop(codes.matheus.Color.BLACK, tileMap, pieces), new Position('f', 8));
-//            pieces.put(tileMap, new Knight(codes.matheus.Color.BLACK, tileMap, pieces), new Position('g', 8));
-//            pieces.put(tileMap, new Rook(codes.matheus.Color.BLACK, tileMap, pieces), new Position('h', 8));
+            pieces.put(tileMap, new Bishop(codes.matheus.Color.BLACK, tileMap, pieces), new Position('f', 8));
+            pieces.put(tileMap, new Knight(codes.matheus.Color.BLACK, tileMap, pieces), new Position('g', 8));
+            pieces.put(tileMap, new Rook(codes.matheus.Color.BLACK, tileMap, pieces), new Position('h', 8));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('a', 7));
-//            pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('b', 7));
-//            pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('c', 7));
-//            pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('d', 7));
+            pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('b', 7));
+            pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('c', 7));
+            pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('d', 7));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('e', 7));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('f', 7));
             pieces.put(tileMap, new Pawn(codes.matheus.Color.BLACK, tileMap, pieces), new Position('g', 7));

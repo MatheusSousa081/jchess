@@ -4,10 +4,12 @@ import codes.matheus.engine.core.Dimension;
 import codes.matheus.engine.core.Vector2D;
 import codes.matheus.engine.graphics.Button;
 import codes.matheus.engine.graphics.Elements;
+import codes.matheus.engine.tilemap.Theme;
 import codes.matheus.engine.util.Fps;
 import codes.matheus.game.Game;
 import codes.matheus.player.Player;
 import codes.matheus.player.Username;
+import codes.matheus.util.ResourceManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -48,11 +50,14 @@ public class SettingsPanel extends ResponsivePanel {
 
     private final class UI {
         public UI() {
-            addButton(new Button(new Vector2D(200, 300), new Dimension(175, 50), "Configurations", "Sign in",
+            addButton(new Button(new Vector2D(200, 300), new Dimension(175, 50), "Sign in", "Sign in",
                     null, new Color(129, 182, 76)), btn -> addUser());
 
             addButton(new Button(new Vector2D(200, 375), new Dimension(175, 50), "Play", "Play",
                     null, new Color(129, 182, 76)), btn -> start());
+
+            addButton(new Button(new Vector2D(500, 10), new Dimension(32, 32), "Theme",
+                    null, ResourceManager.getSprite("configuration"), Color.gray), btn -> setTheme());
         }
 
         private synchronized void addButton(@NotNull Button button, @NotNull Consumer<@NotNull Button> event) {
@@ -89,7 +94,18 @@ public class SettingsPanel extends ResponsivePanel {
                 game.setPlayer(new Player(Username.parse(username)));
             }
 
-            removeButton("Configurations");
+            removeButton("Sign in");
+        }
+
+        private void setTheme() {
+            @NotNull String[] themes = {"Classic", "Cyan", "Glass"};
+            @NotNull String theme = (String) JOptionPane.showInputDialog(null, "Select theme", "Theme", JOptionPane.PLAIN_MESSAGE, null, themes, themes[0]);
+
+            switch (theme) {
+                case "Classic" -> Game.setTheme(Theme.CLASSIC);
+                case "Cyan" -> Game.setTheme(Theme.OCEAN);
+                case "Glass" -> Game.setTheme(Theme.GLASS);
+            }
         }
 
         private void draw(@NotNull Graphics2D graphics2D) {

@@ -3,31 +3,19 @@ package codes.matheus.engine.graphics;
 import codes.matheus.engine.core.Dimension;
 import codes.matheus.engine.core.Vector2D;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public final class Sprite {
-    private @NotNull BufferedImage image;
+    private final @Nullable BufferedImage image;
 
-    public Sprite(@NotNull File file) {
+    public Sprite(@NotNull String fileName) {
         try {
-            this.image = ImageIO.read(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public @NotNull BufferedImage getImage() {
-        return image;
-    }
-
-    public void setImage(@NotNull File file) {
-        try {
-            this.image = ImageIO.read(file);
+            this.image = ImageIO.read(getClass().getResourceAsStream(fileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

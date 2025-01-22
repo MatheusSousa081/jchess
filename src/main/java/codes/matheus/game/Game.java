@@ -7,6 +7,8 @@ import codes.matheus.board.Position;
 import codes.matheus.engine.core.Core;
 import codes.matheus.engine.core.Dimension;
 import codes.matheus.engine.graphics.Elements;
+import codes.matheus.engine.tilemap.Theme;
+import codes.matheus.engine.tilemap.TileMap;
 import codes.matheus.engine.ui.GamePanel;
 import codes.matheus.engine.ui.SettingsPanel;
 import codes.matheus.engine.ui.Window;
@@ -22,6 +24,17 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public final class Game implements Runnable, Core {
+    private static @NotNull Theme theme = Theme.CLASSIC;
+
+    public static @NotNull Theme getTheme() {
+        return theme;
+    }
+
+    public static void setTheme(@NotNull Theme newTheme) {
+        theme = newTheme;
+        TileMap.updateTheme();
+    }
+
     private final @NotNull Window window = Window.getInstance("Chess", Dimension.Resolutions.HD.getDimension());
     private final @NotNull SettingsPanel settingsPanel = new SettingsPanel(this);
     private final @NotNull GameManager manager = new GameManager();

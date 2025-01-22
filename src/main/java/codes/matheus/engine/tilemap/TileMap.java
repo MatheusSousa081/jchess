@@ -4,18 +4,26 @@ import codes.matheus.board.MoveExecutor;
 import codes.matheus.board.Position;
 import codes.matheus.engine.core.Dimension;
 import codes.matheus.engine.graphics.Sprite;
+import codes.matheus.game.Game;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import java.io.File;
 
 public final class TileMap {
-    private final static @NotNull Sprite brownDark = new Sprite(new File("src/main/resources/background/brown-dark.png"));
-    private final static @NotNull Sprite brownLight = new Sprite(new File("src/main/resources/background/brown-light.png"));
-    private final static @NotNull Sprite brownDarkMove = new Sprite(new File("src/main/resources/background/brown-dark-move.png"));
-    private final static @NotNull Sprite brownLightMove = new Sprite(new File("src/main/resources/background/brown-light-move.png"));
+    private static @NotNull Sprite brownDark = Game.getTheme().getDark();
+    private static @NotNull Sprite brownLight = Game.getTheme().getLight();
+    private static @NotNull Sprite brownDarkMove = Game.getTheme().getDarkMove();
+    private static @NotNull Sprite brownLightMove = Game.getTheme().getLightMove();
     private final static int rows = 8;
     private final static int columns = 8;
+
+    public static void updateTheme() {
+        brownDark = Game.getTheme().getDark();
+        brownLight = Game.getTheme().getLight();
+        brownDarkMove = Game.getTheme().getDarkMove();
+        brownLightMove = Game.getTheme().getLightMove();
+    }
+
     private final @NotNull Tile[][] map;
     private @NotNull MoveExecutor moveExecutor;
 
